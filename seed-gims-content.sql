@@ -46,6 +46,22 @@ BEGIN
 END;
 $$;
 
+CREATE TABLE IF NOT EXISTS media (
+  id integer PRIMARY KEY,
+  alt text NOT NULL,
+  url text NOT NULL,
+  thumbnail_u_r_l text,
+  filename text,
+  mime_type text,
+  filesize integer,
+  width integer,
+  height integer,
+  focal_x integer,
+  focal_y integer,
+  created_at timestamptz NOT NULL DEFAULT NOW(),
+  updated_at timestamptz NOT NULL DEFAULT NOW()
+);
+
 INSERT INTO media (
   id,
   alt,
@@ -87,6 +103,172 @@ ON CONFLICT (id) DO UPDATE SET
   focal_x = EXCLUDED.focal_x,
   focal_y = EXCLUDED.focal_y,
   updated_at = NOW();
+
+CREATE TABLE IF NOT EXISTS contact_page_settings (
+  id integer PRIMARY KEY,
+  judul text NOT NULL,
+  deskripsi_singkat text NOT NULL,
+  kontak_info_alamat text NOT NULL,
+  kontak_info_telepon text NOT NULL,
+  kontak_info_email text NOT NULL,
+  map_link text,
+  created_at timestamptz NOT NULL DEFAULT NOW(),
+  updated_at timestamptz NOT NULL DEFAULT NOW()
+);
+
+INSERT INTO contact_page_settings (
+  id,
+  judul,
+  deskripsi_singkat,
+  kontak_info_alamat,
+  kontak_info_telepon,
+  kontak_info_email,
+  map_link,
+  created_at,
+  updated_at
+) VALUES
+  (
+    2,
+    'Contact',
+    'Hubungi kami untuk konsultasi mengenai kebutuhan teknologi bisnis Anda.',
+    'Jl. Taman Kopo Indah 1 M27, Bandung, Jawa Barat, Indonesia',
+    'Bandung : 022 3050 2080',
+    'contact@gimsnet.co.id',
+    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.6!2d107.57!3d-6.96!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTcnMzYuMCJTIDEwN8KwMzQnMTIuMCJF!5e0!3m2!1sid!2sid!4v1',
+    NOW(),
+    NOW()
+  )
+ON CONFLICT (id) DO UPDATE SET
+  judul = EXCLUDED.judul,
+  deskripsi_singkat = EXCLUDED.deskripsi_singkat,
+  kontak_info_alamat = EXCLUDED.kontak_info_alamat,
+  kontak_info_telepon = EXCLUDED.kontak_info_telepon,
+  kontak_info_email = EXCLUDED.kontak_info_email,
+  map_link = EXCLUDED.map_link,
+  updated_at = NOW();
+
+CREATE TABLE IF NOT EXISTS home_page_settings (
+  id integer PRIMARY KEY,
+  judul text NOT NULL,
+  tentang_kami_judul text NOT NULL,
+  tentang_kami_deskripsi text NOT NULL,
+  tentang_kami_gambar_id integer,
+  created_at timestamptz NOT NULL DEFAULT NOW(),
+  updated_at timestamptz NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS home_page_settings_slides (
+  _order integer,
+  _parent_id integer,
+  id integer PRIMARY KEY,
+  gambar_id integer,
+  label text,
+  judul text,
+  deskripsi text
+);
+
+CREATE TABLE IF NOT EXISTS home_page_settings_layanan_di_home (
+  _order integer,
+  _parent_id integer,
+  id integer PRIMARY KEY,
+  slug text,
+  judul text,
+  deskripsi text,
+  icon_name text
+);
+
+CREATE TABLE IF NOT EXISTS about_page_settings (
+  id integer PRIMARY KEY,
+  judul text NOT NULL,
+  deskripsi_singkat text NOT NULL,
+  tentang_perusahaan_label text,
+  tentang_perusahaan_judul text,
+  tentang_perusahaan_gambar_utama_id integer,
+  tentang_perusahaan_gambar_kanan_id integer,
+  tentang_perusahaan_gambar_bawah_id integer,
+  visi_misi_label text,
+  visi_misi_visi_deskripsi text,
+  visi_misi_gambar_id integer,
+  nilai_inti_label text,
+  nilai_inti_deskripsi_singkat text,
+  mengapa_milih_gi_m_s_label text,
+  mengapa_milih_gi_m_s_judul text,
+  mengapa_milih_gi_m_s_deskripsi_singkat text,
+  mengapa_milih_gi_m_s_gambar_id integer,
+  wilayah_jangkauan_label text,
+  wilayah_jangkauan_judul text,
+  wilayah_jangkauan_deskripsi text,
+  created_at timestamptz NOT NULL DEFAULT NOW(),
+  updated_at timestamptz NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS about_page_settings_tentang_perusahaan_paragraf (
+  _order integer,
+  _parent_id integer,
+  id integer PRIMARY KEY,
+  teks text
+);
+
+CREATE TABLE IF NOT EXISTS about_page_settings_visi_misi_misi (
+  _order integer,
+  _parent_id integer,
+  id integer PRIMARY KEY,
+  teks text
+);
+
+CREATE TABLE IF NOT EXISTS about_page_settings_nilai_inti_nilai_list (
+  _order integer,
+  _parent_id integer,
+  id integer PRIMARY KEY,
+  huruf text,
+  judul text,
+  subtitle text,
+  deskripsi text
+);
+
+CREATE TABLE IF NOT EXISTS about_page_settings_mengapa_milih_gi_m_s_alasan_list (
+  _order integer,
+  _parent_id integer,
+  id integer PRIMARY KEY,
+  kategori text,
+  subtitle text,
+  deskripsi text
+);
+
+CREATE TABLE IF NOT EXISTS about_page_settings_wilayah_jangkauan_kota_list (
+  _order integer,
+  _parent_id integer,
+  id integer PRIMARY KEY,
+  nama text,
+  latitude numeric,
+  longitude numeric
+);
+
+CREATE TABLE IF NOT EXISTS product_page_settings (
+  id integer PRIMARY KEY,
+  judul text NOT NULL,
+  deskripsi_singkat text NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT NOW(),
+  updated_at timestamptz NOT NULL DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS product_page_settings_kategori_produk (
+  _order integer,
+  _parent_id integer,
+  id integer PRIMARY KEY,
+  judul text,
+  gambar_id integer,
+  alt_gambar text,
+  intro text
+);
+
+CREATE TABLE IF NOT EXISTS product_page_settings_kategori_produk_produk_list (
+  _order integer,
+  _parent_id integer,
+  id integer PRIMARY KEY,
+  nama text,
+  deskripsi jsonb
+);
 
 INSERT INTO home_page_settings (
   id,
