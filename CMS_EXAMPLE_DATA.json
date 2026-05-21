@@ -1,0 +1,194 @@
+{
+  "homePageExamples": {
+    "slide": {
+      "gambar": "{relationship ke media}",
+      "label": "PT. Global Inovasi Mitra Solusi",
+      "judul": "Penyedia Layanan Infrastruktur & Solusi Teknologi Terdepan",
+      "deskripsi": "Berfokus pada penyediaan layanan Internet Service Provider (ISP), integrasi sistem, serta berbagai solusi teknologi informasi yang dirancang untuk memenuhi kebutuhan sektor korporasi dan enterprise."
+    }
+  },
+  "aboutPageExamples": {
+    "tentangPerusahaan": {
+      "label": "Company Profile",
+      "judul": "About Us",
+      "paragraf": [
+        {
+          "teks": "PT. Global Inovasi Mitra Solusi (GIMS) merupakan perusahaan yang bergerak di bidang solusi teknologi informasi dan infrastruktur jaringan telekomunikasi di Indonesia. Perusahaan ini berfokus pada penyediaan layanan Internet Service Provider (ISP), integrasi sistem, serta berbagai solusi teknologi informasi yang dirancang untuk memenuhi kebutuhan sektor korporasi dan enterprise."
+        },
+        {
+          "teks": "Sejak awal berdirinya, GIMS berkomitmen untuk menghadirkan layanan teknologi yang modern, andal, dan terintegrasi. Perusahaan terus berkembang dengan memperluas kapabilitasnya dalam pembangunan infrastruktur jaringan, pengelolaan layanan teknologi, serta penyediaan solusi digital yang mendukung transformasi bisnis pelanggan."
+        },
+        {
+          "teks": "Dalam perjalanan pengembangannya, GIMS telah menjalin kerja sama dengan berbagai mitra strategis di industri telekomunikasi dan teknologi informasi. Kolaborasi ini memungkinkan perusahaan untuk menghadirkan layanan yang lebih inovatif, efisien, dan berkelanjutan bagi berbagai sektor industri."
+        }
+      ],
+      "gambar": {
+        "utama": "{relationship ke /images/cloud-infra.png}",
+        "kanan": "{relationship ke /images/datacenter.png}",
+        "bawah": "{relationship ke /images/fiber-optic.png}"
+      }
+    },
+    "visiMisi": {
+      "label": "Vision & Mission",
+      "visi": {
+        "deskripsi": "Menjadi mitra strategis dan terpercaya dalam penyediaan layanan Internet dan solusi teknologi informasi yang berfokus pada kebutuhan pelanggan serta memberi nilai tambah bagi pertumbuhan bisnis."
+      },
+      "misi": [
+        {
+          "teks": "Memperluas jangkauan layanan internet dan teknologi, untuk mendukung konektivitas dan kemajuan digital di berbagai sektor."
+        },
+        {
+          "teks": "Mendorong inovasi berkelanjutan dalam pengembangan teknologi, jaringan, dan solusi digital yang adaptif terhadap perkembangan zaman."
+        },
+        {
+          "teks": "Menjadi mitra terpercaya bagi pelanggan dan bisnis, dengan membangun hubungan jangka panjang yang saling menguntungkan dan berorientasi pada kepuasan."
+        },
+        {
+          "teks": "Memberikan solusi teknologi yang tepat guna dan terintegrasi, untuk mendukung efisiensi, produktivitas, dan transformasi digital pelanggan."
+        },
+        {
+          "teks": "Mengembangkan sumber daya manusia yang kompeten di bidang IT, guna memberikan layanan profesional dan berkualitas tinggi."
+        }
+      ],
+      "gambar": "{relationship ke /images/vision-mision.png}"
+    },
+    "nilaiInti": {
+      "label": "Core Values",
+      "deskripsiSingkat": "Nilai-nilai inti yang membentuk identitas GiMS dan menjadi fondasi dalam setiap layanan kami.",
+      "nilaiList": [
+        {
+          "huruf": "G",
+          "judul": "Global Excellence",
+          "subtitle": "Global",
+          "deskripsi": "Menjalankan setiap aspek bisnis dengan standar terbaik, mengedepankan kualitas, profesionalisme, dan daya saing global dalam layanan serta solusi teknologi."
+        },
+        {
+          "huruf": "I",
+          "judul": "Innovative Growth",
+          "subtitle": "Inovasi",
+          "deskripsi": "Mendorong inovasi berkelanjutan melalui pemanfaatan teknologi terkini untuk menciptakan solusi yang adaptif, relevan, dan bernilai tambah bagi pelanggan."
+        },
+        {
+          "huruf": "M",
+          "judul": "Strategic Partnership",
+          "subtitle": "Mitra",
+          "deskripsi": "Membangun hubungan kemitraan yang kuat, terpercaya, dan berkelanjutan dengan pelanggan dan mitra bisnis sebagai fondasi pertumbuhan bersama."
+        },
+        {
+          "huruf": "S",
+          "judul": "Solution Driven",
+          "subtitle": "Solusi",
+          "deskripsi": "Berorientasi pada penyelesaian kebutuhan pelanggan dengan pendekatan yang tepat, efektif, dan terintegrasi untuk memberikan hasil yang optimal."
+        }
+      ]
+    },
+    "mengapaMilihGiMS": {
+      "label": "Why Choose Us",
+      "judul": "Kenapa Memilih GiMS?",
+      "deskripsiSingkat": "Kami hadir sebagai mitra teknologi terpercaya yang siap mendukung pertumbuhan bisnis Anda dengan layanan Internet dan solusi IT terbaik.",
+      "alasanList": [
+        {
+          "kategori": "Kualitas & Keamanan Layanan",
+          "subtitle": "Dapat Diandalkan",
+          "deskripsi": "Memberikan jaminan SLA tinggi, dukungan purna jual yang responsif dan proaktif, serta penerapan keamanan data yang ketat untuk menjaga operasional dan informasi klien tetap aman."
+        },
+        {
+          "kategori": "Inovasi dan Adaptabilitas",
+          "subtitle": "Inovasi",
+          "deskripsi": "Selalu mengikuti perkembangan teknologi terbaru seperti cloud computing, kecerdasan buatan (AI), dan menjalin kolaborasi global guna menghadirkan solusi yang modern dan efisien."
+        },
+        {
+          "kategori": "Komitmen pada Klien",
+          "subtitle": "Mitra",
+          "deskripsi": "Mengutamakan pendekatan personal dengan solusi yang disesuaikan kebutuhan klien, serta membangun hubungan transparan dan kemitraan jangka panjang sebagai partner strategis."
+        },
+        {
+          "kategori": "Kompetensi SDM",
+          "subtitle": "Solusi",
+          "deskripsi": "Berfokus pada solusi terintegrasi mulai dari konsultasi, implementasi, hingga layanan support untuk mendukung transformasi digital klien secara berkelanjutan."
+        }
+      ],
+      "gambar": "{relationship ke /images/internet-tower.png}"
+    },
+    "wilayahJangkauan": {
+      "label": "Coverage",
+      "judul": "Jangkauan Nasional",
+      "deskripsi": "GiMS terus memperluas jangkauan layanan infrastruktur teknologi informasi dan jaringan komunikasi di berbagai wilayah strategis Indonesia.",
+      "kotaList": [
+        {
+          "nama": "Medan",
+          "latitude": 3.59,
+          "longitude": 98.67
+        },
+        {
+          "nama": "Batam",
+          "latitude": 1.07,
+          "longitude": 104.03
+        },
+        {
+          "nama": "Jakarta",
+          "latitude": -6.21,
+          "longitude": 106.85
+        },
+        {
+          "nama": "Bandung",
+          "latitude": -6.91,
+          "longitude": 107.61
+        },
+        {
+          "nama": "Surabaya",
+          "latitude": -7.25,
+          "longitude": 112.75
+        },
+        {
+          "nama": "Bali",
+          "latitude": -8.65,
+          "longitude": 115.22
+        },
+        {
+          "nama": "Kalimantan",
+          "latitude": -0.157242,
+          "longitude": 113.864574
+        },
+        {
+          "nama": "Sulawesi",
+          "latitude": -2.279919,
+          "longitude": 120.112575
+        }
+      ]
+    }
+  },
+  "productPageExamples": {
+    "kategori": {
+      "id": "internet-connectivity",
+      "judul": "Internet Connectivity",
+      "gambar": "{relationship ke /images/internet-connectivity.png}",
+      "altGambar": "Enterprise-grade core network routers and massive network switches providing high-speed internet connectivity",
+      "intro": "Kami menyediakan berbagai layanan konektivitas internet yang stabil dan berkinerja tinggi untuk mendukung operasional bisnis Anda, meliputi layanan Dedicated Internet, Broadband Internet, IP Transit, Virtual Private Network (VPN), serta layanan tambahan seperti Add Service IP.",
+      "produkList": [
+        {
+          "nama": "Dedicated Internet",
+          "deskripsi": "<p><strong>Layanan Dedicated Internet menyediakan bandwidth eksklusif</strong> yang memastikan koneksi internet lebih stabil, cepat, dan optimal. Dengan jalur khusus tanpa berbagi bandwidth, pengguna dapat menikmati performa upload dan download yang konsisten untuk mendukung aktivitas bisnis secara maksimal setiap saat.</p>"
+        },
+        {
+          "nama": "Broadband Internet",
+          "deskripsi": "<p><strong>Broadband Internet merupakan layanan internet yang efisien dan ekonomis</strong> tanpa mengurangi kualitas konektivitas. Tersedia berbagai pilihan paket yang fleksibel sesuai kebutuhan, sehingga menjadi solusi yang tepat untuk memenuhi kebutuhan akses internet Anda.</p>"
+        },
+        {
+          "nama": "IP Transit",
+          "deskripsi": "<p>Layanan IP Transit memastikan ketersediaan rute jaringan dan alokasi bandwidth yang optimal sehingga menghadirkan konektivitas internet berkecepatan tinggi dengan biaya yang efisien. <strong>Jaringan kami terhubung langsung ke berbagai internet backbone dan internet exchange, sehingga mampu menyediakan jalur akses dengan latensi rendah menuju berbagai platform populer seperti Google, YouTube, Facebook, Instagram, dan lainnya.</strong> Layanan ini juga didukung dengan penggunaan Border Gateway Protocol (BGP) untuk pengelolaan rute jaringan.</p>"
+        },
+        {
+          "nama": "Virtual Private Network (VPN)",
+          "deskripsi": "<p>Virtual Private Network (VPN) membantu perusahaan membangun koneksi jaringan yang aman antara kantor pusat dan cabang. <strong>Dengan teknologi VPN Access, perusahaan dapat meningkatkan efisiensi operasional, termasuk dalam komunikasi data, layanan telepon berbasis VoIP, hingga proses pengiriman data dan dokumen secara aman.</strong> Sistem ini dilengkapi dengan fitur keamanan yang memastikan setiap pertukaran data terlindungi dengan baik.</p>"
+        }
+      ]
+    }
+  },
+  "catatan": {
+    "gambar": "Nilai 'gambar' harus berisi relationship ID dari Payload Media collection, bukan string URL. Ketika Anda memilih gambar di CMS, sistem akan secara otomatis menyimpan relationship tersebut beserta URL dan alt text.",
+    "richText": "Field deskripsi produk menggunakan Lexical Rich Text Editor dan akan disimpan dalam format JSON yang bisa dikonversi ke HTML.",
+    "array": "Semua field dengan tipe Array bisa memiliki banyak item. Anda bisa menambah/mengurangi jumlah item sesuai kebutuhan di admin panel CMS.",
+    "migrasi": "Setelah mengupdate collections, jalankan 'npm run payload migrate' untuk update database schema."
+  }
+}
