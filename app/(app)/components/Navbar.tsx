@@ -3,6 +3,30 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import type { ContactPageSetting } from "@/payload-types";
+import { useContactPageSettings } from "../../hooks/usePageSettings";
+import type { ProductPageSetting } from "@/payload-types";
+import { useProductPageSettings } from "../../hooks/usePageSettings";
+
+const DEFAULT_CONTACT_EMAIL = "contact@gimsnet.co.id";
+
+function formatContactPhone(phone?: string | null) {
+  return phone?.trim() || "022 3050 2080";
+}
+
+function getTelHref(phone?: string | null) {
+  const normalized = phone?.replace(/[^\d+]/g, "");
+  return normalized ? `tel:${normalized}` : "tel:02230502080";
+}
+
+function getProductLinks(settings?: ProductPageSetting | null) {
+  return (settings?.kategoriProduk ?? [])
+    .slice(0, 7)
+    .map((category) => ({
+      label: category.judul,
+      href: `/products#${category.id}`,
+    }));
+}
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -28,6 +52,12 @@ export default function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLLIElement>(null);
   const pathname = usePathname();
+  const { data } = useContactPageSettings();
+  const { data: productData } = useProductPageSettings();
+  const kontak: ContactPageSetting["kontakInfo"] = data?.kontakInfo ?? null;
+  const phone = formatContactPhone(kontak?.telepon);
+  const email = kontak?.email ?? DEFAULT_CONTACT_EMAIL;
+  const productLinks = getProductLinks(productData);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -61,25 +91,18 @@ export default function Navbar() {
       <div className="hidden lg:block bg-navy-dark text-white/60 text-xs">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex items-center justify-between py-2">
           <div className="flex items-center gap-6">
-            <a href="tel:02230502080" className="flex items-center gap-1.5 hover:text-white transition-colors">
+            <a href={getTelHref(kontak?.telepon)} className="flex items-center gap-1.5 hover:text-white transition-colors">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
-              022 3050 2080
+              {phone}
             </a>
-            <a href="mailto:contact@gimsnet.co.id" className="flex items-center gap-1.5 hover:text-white transition-colors">
+            <a href={`mailto:${email}`} className="flex items-center gap-1.5 hover:text-white transition-colors">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              contact@gimsnet.co.id
+              {email}
             </a>
-          </div>
-          <div className="flex items-center gap-3">
-            {["linkedin", "instagram", "youtube"].map((s) => (
-              <a key={s} href="#" aria-label={s} className="hover:text-white transition-colors">
-                <span className="uppercase text-[10px] font-bold">{s.slice(0, 2)}</span>
-              </a>
-            ))}
           </div>
         </div>
       </div>
@@ -128,9 +151,9 @@ export default function Navbar() {
                         All Products
                       </Link>
                       <div className="border-t border-slate-100 my-1" />
-                      {link.submenu.map((sub) => (
-                        <Link key={sub.href} href={sub.href} className="block px-5 py-2.5 text-sm text-slate-500 hover:bg-slate-50 hover:text-navy-dark transition-colors" onClick={() => setDropdownOpen(false)}>
-                          {sub.label}
+                      {(productLinks.length > 0 ? productLinks : link.submenu).map((item) => (
+                        <Link key={item.href} href={item.href} className="block px-5 py-2.5 text-sm text-slate-500 hover:bg-slate-50 hover:text-navy-dark transition-colors" onClick={() => setDropdownOpen(false)}>
+                          {item.label}
                         </Link>
                       ))}
                     </div>
@@ -172,10 +195,10 @@ export default function Navbar() {
                   </Link>
                   {link.submenu && (
                     <ul className="ml-4">
-                      {link.submenu.map((sub) => (
-                        <li key={sub.href}>
-                          <Link href={sub.href} className="block py-2 text-xs text-slate-400 hover:text-navy-dark">
-                            {sub.label}
+                      {(productLinks.length > 0 ? productLinks : link.submenu).map((item) => (
+                        <li key={item.href}>
+                          <Link href={item.href} className="block py-2 text-xs text-slate-400 hover:text-navy-dark">
+                            {item.label}
                           </Link>
                         </li>
                       ))}
