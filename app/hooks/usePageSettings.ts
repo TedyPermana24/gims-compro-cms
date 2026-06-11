@@ -71,3 +71,7 @@ export function useProductPageSettings() {
 export function useContactPageSettings() {
   return usePageSettings('/api/contact-page')
 }
+
+export function useGeneralSettings() {
+  return usePageSettings('/api/general-settings')
+}

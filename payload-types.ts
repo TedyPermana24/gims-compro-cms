@@ -73,6 +73,7 @@ export interface Config {
     'about-page-settings': AboutPageSetting;
       'product-page-settings': ProductPageSetting;
       'contact-page-settings': ContactPageSetting;
+    'general-settings': GeneralSetting;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +87,7 @@ export interface Config {
     'about-page-settings': AboutPageSettingsSelect<false> | AboutPageSettingsSelect<true>;
       'product-page-settings': ProductPageSettingsSelect<false> | ProductPageSettingsSelect<true>;
       'contact-page-settings': ContactPageSettingsSelect<false> | ContactPageSettingsSelect<true>;
+    'general-settings': GeneralSettingsSelect<false> | GeneralSettingsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -374,6 +376,18 @@ export interface ContactPageSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "general-settings".
+ */
+export interface GeneralSetting {
+  id: string;
+  namaSitus: string;
+  logo?: (string | Media) | null;
+  logoFooter?: (string | Media) | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -588,6 +602,17 @@ export interface ContactPageSettingsSelect<T extends boolean = true> {
   deskripsiSingkat?: T;
   kontakInfo?: T | { alamat?: T; telepon?: T; email?: T };
   mapLink?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "general-settings_select".
+ */
+export interface GeneralSettingsSelect<T extends boolean = true> {
+  namaSitus?: T;
+  logo?: T;
+  logoFooter?: T;
   updatedAt?: T;
   createdAt?: T;
 }

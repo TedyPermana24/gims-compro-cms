@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import type { ContactPageSetting } from "@/payload-types";
+import Image from "next/image";
+import type { ContactPageSetting, Media } from "@/payload-types";
 import { useContactPageSettings } from "../../hooks/usePageSettings";
 import type { ProductPageSetting } from "@/payload-types";
-import { useProductPageSettings } from "../../hooks/usePageSettings";
+import { useProductPageSettings, useGeneralSettings } from "../../hooks/usePageSettings";
 
 const DEFAULT_CONTACT_EMAIL = "contact@gimsnet.co.id";
 const DEFAULT_CONTACT_PHONE = "022 3050 2080";
@@ -30,10 +31,14 @@ function getProductLinks(settings?: ProductPageSetting | null) {
 export default function Footer() {
   const { data } = useContactPageSettings();
   const { data: productData } = useProductPageSettings();
+  const { data: generalData } = useGeneralSettings();
   const kontak: ContactPageSetting["kontakInfo"] = data?.kontakInfo ?? null;
   const phone = formatContactPhone(kontak?.telepon ?? DEFAULT_CONTACT_PHONE);
   const email = kontak?.email ?? DEFAULT_CONTACT_EMAIL;
   const productLinks = getProductLinks(productData);
+
+  const footerLogo = (generalData?.logoFooter || generalData?.logo) as Media | null | undefined;
+  const siteName = generalData?.namaSitus || "GIMS";
 
   return (
     <footer className="bg-navy-dark text-white">
@@ -43,9 +48,19 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="inline-block mb-5">
-              <span className="text-xl font-bold tracking-tight font-[var(--font-outfit)]">
-                GIMS
-              </span>
+              {footerLogo?.url ? (
+                <Image
+                  src={footerLogo.url}
+                  alt={footerLogo.alt || siteName}
+                  width={footerLogo.width || 120}
+                  height={footerLogo.height || 40}
+                  className="h-9 w-auto object-contain brightness-0 invert"
+                />
+              ) : (
+                <span className="text-xl font-bold tracking-tight font-[var(--font-outfit)]">
+                  {siteName}
+                </span>
+              )}
             </Link>
             <p className="text-sm text-white/40 leading-relaxed mb-4">
               PT. Global Inovasi Mitra Solusi. Innovation, Partners, Solutions.

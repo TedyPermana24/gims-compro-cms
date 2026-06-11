@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import type { ContactPageSetting } from "@/payload-types";
+import type { ContactPageSetting, Media } from "@/payload-types";
 import { useContactPageSettings } from "../../hooks/usePageSettings";
 import type { ProductPageSetting } from "@/payload-types";
-import { useProductPageSettings } from "../../hooks/usePageSettings";
+import { useProductPageSettings, useGeneralSettings } from "../../hooks/usePageSettings";
 
 const DEFAULT_CONTACT_EMAIL = "contact@gimsnet.co.id";
 
@@ -54,10 +55,14 @@ export default function Navbar() {
   const pathname = usePathname();
   const { data } = useContactPageSettings();
   const { data: productData } = useProductPageSettings();
+  const { data: generalData } = useGeneralSettings();
   const kontak: ContactPageSetting["kontakInfo"] = data?.kontakInfo ?? null;
   const phone = formatContactPhone(kontak?.telepon);
   const email = kontak?.email ?? DEFAULT_CONTACT_EMAIL;
   const productLinks = getProductLinks(productData);
+
+  const logo = generalData?.logo as Media | null | undefined;
+  const siteName = generalData?.namaSitus || "GIMS";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -82,7 +87,7 @@ export default function Navbar() {
 
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
-    return pathname.startsWith(href);
+    return pathname?.startsWith(href) ?? false;
   };
 
   return (
@@ -115,9 +120,20 @@ export default function Navbar() {
         <nav className="mx-auto max-w-7xl flex items-center justify-between px-6 lg:px-8 h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight font-[var(--font-outfit)] text-navy-dark">
-              GIMS
-            </span>
+            {logo?.url ? (
+              <Image
+                src={logo.url}
+                alt={logo.alt || siteName}
+                width={logo.width || 120}
+                height={logo.height || 40}
+                className="h-9 w-auto object-contain"
+                priority
+              />
+            ) : (
+              <span className="text-xl font-bold tracking-tight font-[var(--font-outfit)] text-navy-dark">
+                {siteName}
+              </span>
+            )}
           </Link>
 
           {/* Desktop Nav */}

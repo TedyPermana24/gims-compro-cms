@@ -11,6 +11,7 @@ import { HomePageSettings } from "./Pages/HomePageSettings";
 import { AboutPageSettings } from "./Pages/AboutPageSettings";
 import { ProductPageSettings } from "./Pages/ProductPageSettings";
 import { ContactPageSettings } from "./Pages/ContactPageSettings";
+import { GeneralSettings } from "./Pages/GeneralSettings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -22,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, HomePageSettings, AboutPageSettings, ProductPageSettings, ContactPageSettings],
+  collections: [Users, Media, HomePageSettings, AboutPageSettings, ProductPageSettings, ContactPageSettings, GeneralSettings],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
