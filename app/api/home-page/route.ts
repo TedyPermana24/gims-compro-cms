@@ -4,7 +4,7 @@ import config from '@/payload.config'
 export async function GET(request: Request) {
   try {
     const payload = await getPayload({ config })
-    
+
     const homePageSettings = await payload.find({
       collection: 'home-page-settings',
       limit: 1,

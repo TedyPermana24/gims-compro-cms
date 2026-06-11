@@ -4,7 +4,7 @@ import config from '@/payload.config'
 export async function GET(request: Request) {
   try {
     const payload = await getPayload({ config })
-    
+
     const generalSettings = await payload.find({
       collection: 'general-settings',
       limit: 1,

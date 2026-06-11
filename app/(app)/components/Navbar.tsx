@@ -62,7 +62,7 @@ export default function Navbar() {
   const productLinks = getProductLinks(productData);
 
   const logo = generalData?.logo as Media | null | undefined;
-  const siteName = generalData?.namaSitus || "GIMS";
+  const siteName = generalData?.namaSitus;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);

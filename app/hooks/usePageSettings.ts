@@ -32,7 +32,7 @@ export function usePageSettings(endpoint: string) {
         }
 
         const result = await response.json()
-        
+
         // Simpan ke cache
         cache[endpoint] = {
           data: result,
