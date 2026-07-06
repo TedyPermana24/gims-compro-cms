@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback, ReactNode } from "react";
-
+import { useGeneralSettings } from "../../hooks/usePageSettings";
 export interface CartItem {
   id: string;
   name: string;
@@ -20,8 +20,6 @@ interface CartContextType {
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
-
-const WHATSAPP_NUMBER = "6202230502080"; // GiMS phone number
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -50,6 +48,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const totalItems = items.length;
 
+  const { data: generalData } = useGeneralSettings();
+  const waNumber = generalData?.whatsapp?.nomor || "022 3050 2080";
+
+  // Format phone number to WhatsApp format
+  const getWhatsAppNumber = (phone: string) => {
+    const digits = phone.replace(/\D/g, "");
+    if (!digits) return "6202230502080";
+    if (digits.startsWith("62")) return digits;
+    if (digits.startsWith("0")) return `62${digits.slice(1)}`;
+    return digits;
+  };
+
   const checkoutToWhatsApp = useCallback(() => {
     if (items.length === 0) return;
 
@@ -58,12 +68,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
       .join("\n");
 
     const message = encodeURIComponent(
-      `Halo GiMS! 👋\n\nSaya tertarik dengan layanan berikut:\n\n${itemsList}\n\nMohon informasi lebih lanjut mengenai harga dan detail layanan.\n\nTerima kasih! 🙏`
+      `Halo GiMS!\n\nSaya tertarik dengan layanan berikut:\n\n${itemsList}\n\nMohon informasi lebih lanjut mengenai harga dan detail layanan.\n\nTerima kasih!`
     );
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    const formattedNumber = getWhatsAppNumber(waNumber);
+    const url = `https://wa.me/${formattedNumber}?text=${message}`;
     window.open(url, "_blank");
-  }, [items]);
+  }, [items, waNumber]);
 
   return (
     <CartContext.Provider

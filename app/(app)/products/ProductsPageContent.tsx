@@ -13,6 +13,7 @@ import { getMediaAlt, getMediaSrc, renderLexicalParagraphs } from "../utils/dbCo
 type ProductDescription = {
   nama: string;
   deskripsi: unknown;
+  tampilkanKeranjang?: boolean | null;
   id?: string | null;
 };
 
@@ -25,37 +26,37 @@ type ProductCategory = {
   produkList?: ProductDescription[] | null;
 };
 
-function AddToCategoryCartButton({ categoryId, categoryTitle }: { categoryId: string; categoryTitle: string }) {
+function AddToProductCartButton({ productId, productName }: { productId: string; productName: string }) {
   const { addItem, removeItem, isInCart } = useCart();
   const [justAdded, setJustAdded] = useState(false);
-  const inCart = isInCart(categoryId);
+  const inCart = isInCart(productId);
 
   const handleToggle = useCallback(() => {
     if (inCart) {
-      removeItem(categoryId);
+      removeItem(productId);
     } else {
-      addItem({ id: categoryId, name: categoryTitle });
+      addItem({ id: productId, name: productName });
       setJustAdded(true);
       setTimeout(() => setJustAdded(false), 1500);
     }
-  }, [addItem, removeItem, categoryId, categoryTitle, inCart]);
+  }, [addItem, removeItem, productId, productName, inCart]);
 
   return (
     <button
       onClick={handleToggle}
-      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 active:scale-95 ${justAdded
-        ? "bg-green-500 text-white shadow-lg shadow-green-500/25"
+      className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-300 active:scale-95 ${justAdded
+        ? "bg-green-500 text-white shadow-md shadow-green-500/25"
         : inCart
-          ? "bg-teal text-white shadow-lg shadow-teal/25 hover:bg-red-500 hover:shadow-red-500/25"
-          : "bg-navy-dark text-white hover:bg-navy-light shadow-lg shadow-navy-dark/15 hover:shadow-navy-dark/25"
+          ? "bg-teal text-white shadow-md shadow-teal/25 hover:bg-red-500 hover:shadow-red-500/25"
+          : "bg-navy-dark text-white hover:bg-navy-light shadow-md shadow-navy-dark/15 hover:shadow-navy-dark/25"
         }`}
     >
       {justAdded ? (
-        <><Check className="w-4 h-4" /> Ditambahkan!</>
+        <><Check className="w-3.5 h-3.5" /> Ditambahkan!</>
       ) : inCart ? (
-        <><Check className="w-4 h-4" /> Sudah di Keranjang</>
+        <><Check className="w-3.5 h-3.5" /> Sudah di Keranjang</>
       ) : (
-        <> Tambah ke Keranjang</>
+        <><ShoppingCart className="w-3.5 h-3.5" /> Tambah ke Keranjang</>
       )}
     </button>
   );
@@ -163,7 +164,6 @@ export default function ProductsPageContent() {
                     <p className="text-teal text-sm font-semibold tracking-[0.2em] uppercase mb-4">// {category.id}</p>
                     <h2 className="text-2xl sm:text-3xl font-bold text-navy-dark font-[var(--font-outfit)] mb-6">{category.judul}</h2>
                     <p className="text-slate-500 leading-relaxed mb-8">{category.intro}</p>
-                    <AddToCategoryCartButton categoryId={category.id} categoryTitle={category.judul} />
                   </div>
                   <div className={`relative ${ci % 2 !== 0 ? "lg:order-1" : ""}`}>
                     <div className="relative aspect-[16/10] rounded-2xl overflow-hidden shadow-xl">
@@ -192,6 +192,11 @@ export default function ProductsPageContent() {
                           <div className="text-slate-600 leading-relaxed space-y-4">
                             {renderLexicalParagraphs(product.deskripsi)}
                           </div>
+                          {product.tampilkanKeranjang && product.id && (
+                            <div className="mt-4">
+                              <AddToProductCartButton productId={product.id} productName={product.nama} />
+                            </div>
+                          )}
                         </div>
                       </article>
                     </Reveal>

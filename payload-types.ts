@@ -348,6 +348,7 @@ export interface ProductPageSetting {
                     [k: string]: unknown;
                   }
                 | unknown[];
+              tampilkanKeranjang?: boolean | null;
               id?: string | null;
             }[]
           | null;
@@ -383,6 +384,13 @@ export interface GeneralSetting {
   namaSitus: string;
   logo?: (string | Media) | null;
   logoFooter?: (string | Media) | null;
+  whatsapp?: {
+    nomor?: string | null;
+    email?: string | null;
+    teksGreeting?: string | null;
+    labelTombol?: string | null;
+    namaPerusahaan?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -588,7 +596,7 @@ export interface ProductPageSettingsSelect<T extends boolean = true> {
         gambar?: T;
         altGambar?: T;
         intro?: T;
-        produkList?: T | { nama?: T; deskripsi?: T };
+        produkList?: T | { nama?: T; deskripsi?: T; tampilkanKeranjang?: T };
       };
   updatedAt?: T;
   createdAt?: T;
@@ -613,6 +621,15 @@ export interface GeneralSettingsSelect<T extends boolean = true> {
   namaSitus?: T;
   logo?: T;
   logoFooter?: T;
+  whatsapp?:
+    | T
+    | {
+        nomor?: T;
+        email?: T;
+        teksGreeting?: T;
+        labelTombol?: T;
+        namaPerusahaan?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

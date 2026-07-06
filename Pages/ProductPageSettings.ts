@@ -77,6 +77,15 @@ export const ProductPageSettings: CollectionConfig = {
               required: true,
               label: 'Deskripsi Produk',
             },
+            {
+              name: 'tampilkanKeranjang',
+              type: 'checkbox',
+              label: 'Tampilkan Tombol Keranjang',
+              defaultValue: false,
+              admin: {
+                description: 'Jika dicentang, tombol "Tambah ke Keranjang" akan muncul pada produk ini.',
+              },
+            },
           ],
         },
       ],
